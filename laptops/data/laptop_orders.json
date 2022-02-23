@@ -1,0 +1,90 @@
+[
+	{
+		"customer": {
+			"id": 123456789,
+			"name": "Dana Weiss",
+			"address": "Tel Aviv"
+		},
+		"order_id": 1,
+		"order_date": "11-02-2021",
+		"items": [
+			{
+				"laptop_id": 458,
+				"amount": 1,
+				"price": 1567
+			}
+		]
+	},
+
+	{
+		"customer": {
+			"id": 987654321,
+			"name": "IAI",
+			"address": "Airport City, Israel"
+		},
+		"order_id": 2,
+		"order_date": "12-04-2020",
+		"items": [
+			{
+				"laptop_id": 551,
+				"amount": 30,
+				"price": 250
+			}
+		]
+	},
+
+
+	{
+		"customer": {
+			"id": 987654321,
+			"name": "IAI",
+			"address": "Airport City, Israel"
+		},
+		"order_id": 3,
+		"order_date": "22-05-2021",
+		"items": [
+			{
+				"laptop_id": 1,
+				"amount": 4,
+				"price": 1321
+			},
+			{
+				"laptop_id": 14,
+				"amount": 2,
+				"price": 498.9
+			}
+		]
+	},
+
+	{
+		"customer": {
+			"id": 333344445,
+			"name": "Joe Rogan",
+			"address": "Somewhere in US"
+		},
+		"order_id": 4,
+		"order_date": "20-02-2022",
+		"items": [
+			{
+				"laptop_id": 24,
+				"amount": 2,
+				"price": 852.1
+			},
+			{
+				"laptop_id": 38,
+				"amount": 1,
+				"price": 977
+			},
+			{
+				"laptop_id": 29,
+				"amount": 1,
+				"price": 1298
+			},
+			{
+				"laptop_id": 44,
+				"amount": 1,
+				"price": 690
+			}
+		]
+	}
+]
