@@ -49,8 +49,8 @@ def load_laptops():
                 name_field = row[2]
                 type_field = row[3]
                 inches_field = float(row[4])
-                res_w = get_resolution(row[5][0])
-                res_h = get_resolution(row[5][1])
+                res_w = get_resolution(row[5])[0]
+                res_h = get_resolution(row[5])[1]
                 cpu_field = row[6]
                 ram_gb_field = get_ram(row[7])
 
