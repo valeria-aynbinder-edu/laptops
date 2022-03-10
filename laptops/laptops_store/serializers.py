@@ -10,11 +10,12 @@ from .models import Laptop, OrderItem, Customer, Order
 class LaptopSerializer(serializers.ModelSerializer):
     class Meta:
         model=Laptop
+        fields = "__all__"
 
 
 class NewOrderItemSerializer(serializers.Serializer):
     laptop = serializers.PrimaryKeyRelatedField(many=False, queryset=Laptop.objects.all())
-    amnt = serializers.FloatField()
+    amnt = serializers.IntegerField()
 
 
 class CustomerSerializer(serializers.Serializer):
@@ -25,6 +26,7 @@ class CustomerSerializer(serializers.Serializer):
 class NewOrderSerializer(serializers.Serializer):
     customer = CustomerSerializer()
     items = NewOrderItemSerializer(many=True)
+
 
     def create(self, validated_data):
         with transaction.atomic():

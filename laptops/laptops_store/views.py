@@ -1,8 +1,9 @@
 import datetime
 
 from django.db import transaction, IntegrityError
-from rest_framework import status
+from rest_framework import status, generics
 from rest_framework.decorators import api_view
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 
 from .custom_queries import total_stats_query, best_customers_query
@@ -10,12 +11,32 @@ from .models import Customer, Order, OrderItem, Laptop
 
 
 
-from .serializers import NewOrderSerializer
+from .serializers import NewOrderSerializer, LaptopSerializer
 
+
+# @api_view(['GET'])
+# def laptops(request):
+#     if request.method == 'GET':
+#         laptops = Laptop.objects.all()
+#         ser = LaptopSerializer(laptops, many=True)
+#         return Response(ser.data)
+
+
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 20
+    page_size_query_param = 'page_size'
+    max_page_size = 100
+
+class LaptopsView(generics.ListAPIView):
+    queryset = Laptop.objects.all()
+    serializer_class = LaptopSerializer
+    pagination_class = StandardResultsSetPagination
 
 # Solution without serializers (totally ok, just requires more validation)
 @api_view(['POST'])
 def orders(request):
+    # get authenticated user
+    # user_id = request.user.id
     if request.method == 'POST':
         try:
             with transaction.atomic():
@@ -25,6 +46,7 @@ def orders(request):
 
 
                 new_order = Order(customer=new_cust,
+                                  # customer_id=new_cust.id,
                                   order_date=datetime.date.today(),
                                   )
                 new_order.save()
@@ -78,3 +100,6 @@ def best_customers(request):
     result = best_customers_query(from_date, to_date, count)
     print(result)
     return Response(result, status=status.HTTP_200_OK)
+
+
+
